@@ -155,7 +155,7 @@ body::after {
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn-primary {
   background: var(--copper); color: var(--white);
-  padding: 0.9rem 2rem; border-radius: 8px;
+  padding: 0.9rem 2rem; border-radius: 50px;
   font-weight: 600; font-size: 0.95rem;
   transition: all 0.3s ease; border: 2px solid var(--copper);
   cursor: pointer;
@@ -163,12 +163,23 @@ body::after {
 .btn-primary:hover { background: var(--copper-light); border-color: var(--copper-light); transform: translateY(-2px); box-shadow: 0 8px 24px var(--copper-glow); }
 .btn-secondary {
   background: transparent; color: var(--white);
-  padding: 0.9rem 2rem; border-radius: 8px;
+  padding: 0.9rem 2rem; border-radius: 50px;
   font-weight: 600; font-size: 0.95rem;
   border: 2px solid rgba(255,255,255,0.2);
   transition: all 0.3s ease; cursor: pointer;
 }
 .btn-secondary:hover { border-color: rgba(255,255,255,0.5); }
+
+/* Hero mini stats */
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 3rem; justify-content: center;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: var(--font-display); font-size: 1.6rem; color: var(--copper);
+  font-variant-numeric: tabular-nums;
+}
+.hero-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); margin-top: 0.2rem; letter-spacing: 0.03em; }
 
 /* Hero scroll indicator */
 .hero-scroll {
@@ -213,7 +224,7 @@ body::after {
 .services-header .section-subtitle { margin: 0 auto; }
 .services-grid {
   max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
 }
 .service-card {
   background: var(--cream); border-radius: 16px;
@@ -325,7 +336,7 @@ body::after {
 .test-author { display: flex; align-items: center; gap: 0.8rem; }
 .test-avatar {
   width: 44px; height: 44px; border-radius: 50%;
-  background: var(--navy); color: var(--copper);
+  background: rgba(200,121,65,0.12); color: var(--copper);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display); font-size: 1rem; font-weight: 700;
 }
@@ -333,44 +344,32 @@ body::after {
 .test-loc { font-size: 0.78rem; color: var(--slate); }
 
 /* ============ ZONE ============ */
-.zone { background: var(--cream); }
+.zone { background: var(--white); }
 .zone-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  max-width: 900px; margin: 0 auto;
 }
-.zone-map {
-  background: var(--navy); border-radius: 16px; aspect-ratio: 1/0.85;
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
+.zone-content {
+  border-left: 3px solid var(--copper); padding-left: 2rem; margin-top: 2rem;
 }
-.zone-map::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 50%, var(--copper-glow) 0%, transparent 60%);
-}
-.zone-map-pin {
-  position: relative; z-index: 2; text-align: center; color: var(--white);
-}
-.zone-map-pin svg { width: 48px; height: 48px; fill: var(--copper); margin-bottom: 0.5rem; }
-.zone-map-pin p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
-.zone-list { list-style: none; margin-top: 2rem; }
+.zone-list { list-style: none; margin-top: 1.5rem; columns: 2; column-gap: 3rem; }
 .zone-list li {
-  padding: 0.6rem 0; font-size: 0.95rem; color: var(--text);
-  border-bottom: 1px solid var(--cream-dark);
+  padding: 0.5rem 0; font-size: 0.95rem; color: var(--text);
   display: flex; align-items: center; gap: 0.6rem;
+  break-inside: avoid;
 }
 .zone-list li::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
   background: var(--copper); flex-shrink: 0;
 }
 
 /* ============ CTA ============ */
 .cta {
-  background: var(--white); padding: 6rem 3rem; text-align: center;
+  background: var(--cream); padding: 6rem 3rem; text-align: center;
 }
 .cta-inner {
   max-width: 700px; margin: 0 auto;
-  background: var(--cream);
-  border: 1px solid var(--cream-dark);
+  background: rgba(200,121,65,0.08);
+  border: 1px solid rgba(200,121,65,0.18);
   border-radius: 24px; padding: 4rem 3rem;
 }
 .cta-title {
@@ -415,12 +414,9 @@ body::after {
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1024px) {
   .hero-overlay { padding: 0 2rem; }
-  .services-grid { grid-template-columns: 1fr 1fr; }
   .real-grid { grid-template-columns: 1fr; }
   .real-small-grid { grid-template-columns: 1fr 1fr; }
   .process-steps { grid-template-columns: 1fr 1fr; }
-  .process-steps { grid-template-columns: 1fr 1fr; }
-  .zone-inner { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .nav { padding: 1rem 1.5rem; }
@@ -472,6 +468,11 @@ body::after {
         <a href="#contact" class="btn-primary">Demander un devis</a>
         <a href="#realisations" class="btn-secondary">Voir nos projets</a>
       </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">15+</div><div class="hero-stat-label">Annees d'experience</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">380</div><div class="hero-stat-label">Projets realises</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">98%</div><div class="hero-stat-label">Clients satisfaits</div></div>
+      </div>
     </div>
   </div>
   <div class="hero-scroll">
@@ -517,20 +518,6 @@ body::after {
       <h3>Travaux de renovation</h3>
       <p>Cuisine, WC, buanderie : nous renovons toutes vos pieces d'eau avec un accompagnement sur-mesure.</p>
     </div>
-    <div class="service-card reveal">
-      <div class="service-icon">
-        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <h3>Depannage urgent</h3>
-      <p>Fuite d'eau, canalisation bouchee, panne de chauffe-eau : intervention rapide sur Canejan et alentours.</p>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-icon">
-        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      </div>
-      <h3>Mise aux normes</h3>
-      <p>Diagnostic et mise en conformite de vos installations. Respect des normes en vigueur et garantie decennale.</p>
-    </div>
   </div>
 </section>
 
@@ -542,7 +529,7 @@ body::after {
     <p class="section-subtitle">Decouvrez quelques-unes de nos renovations recentes a Canejan et ses environs.</p>
   </div>
   <div class="real-grid">
-    <div class="real-card reveal" style="background-image: url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&h=600&fit=crop'); min-height: 100%;">
+    <div class="real-card reveal" style="background-image: url('img/after.jpg'); min-height: 100%;">
       <div class="real-card-content">
         <span class="real-tag">Salle de bain</span>
         <h3>Renovation complete a Canejan</h3>
@@ -645,11 +632,11 @@ body::after {
 <!-- Zone d'intervention -->
 <section class="section zone" id="zone">
   <div class="zone-inner">
-    <div>
-      <div class="section-label reveal">Zone d'intervention</div>
-      <h2 class="section-title reveal">Canejan et ses environs</h2>
-      <p class="section-subtitle reveal">Nous intervenons dans un rayon de 30 km autour de Canejan, couvrant l'ensemble de la metropole bordelaise sud.</p>
-      <ul class="zone-list reveal">
+    <div class="section-label reveal">Zone d'intervention</div>
+    <h2 class="section-title reveal">Canejan et ses environs</h2>
+    <p class="section-subtitle reveal">Nous intervenons dans un rayon de 30 km autour de Canejan, couvrant l'ensemble de la metropole bordelaise sud.</p>
+    <div class="zone-content reveal">
+      <ul class="zone-list">
         <li>Canejan</li>
         <li>Cestas</li>
         <li>Gradignan</li>
@@ -661,13 +648,6 @@ body::after {
         <li>Cadaujac</li>
         <li>La Brede</li>
       </ul>
-    </div>
-    <div class="zone-map reveal">
-      <div class="zone-map-pin">
-        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3" fill="#0B1D2E"/></svg>
-        <p style="font-family: var(--font-display); font-size: 1.3rem; color: var(--copper); margin-bottom: 0.3rem;">Canejan</p>
-        <p>Gironde (33)</p>
-      </div>
     </div>
   </div>
 </section>
